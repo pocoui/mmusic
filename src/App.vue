@@ -9,7 +9,7 @@ import MHeader from "@/components/header/header";
 import Tab from "@/components/tab/tab";
 
 export default {
-  name: "",
+  name: "app",
   components: {
     MHeader,
     Tab,

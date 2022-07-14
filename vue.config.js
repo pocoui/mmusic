@@ -1,3 +1,4 @@
+const registerRouter = require('./backend/router')
 module.exports = {
     lintOnSave: false,
     css: {
@@ -11,4 +12,10 @@ module.exports = {
             }
         }
     },
+    //启动NodeServer
+    devServer: {
+        before(app) {
+            registerRouter(app)
+        }
+    }
 }

@@ -13,7 +13,7 @@ const loadingDirective = {
         el.instance = instance
         //动态参数
         const title = binding.arg
-        if (typeof title !== undefined) {
+        if (typeof title !== "undefined") {
             el.instance.setTitle(title)
         }
             
@@ -24,7 +24,7 @@ const loadingDirective = {
     updated(el, binding) {
         //动态参数
         const title = binding.arg
-        if (typeof title !== undefined) {
+        if (typeof title !== "undefined") {
             el.instance.setTitle(title)
         }
         if (binding.value !== binding.oldvalue) {

@@ -5,16 +5,24 @@ import BScroll from '@better-scroll/core'
 import ObserveDOM from '@better-scroll/observe-dom'
 BScroll.use(ObserveDOM)
 
-export default function useScroll(wrapperRef, options) {
+export default function useScroll(wrapperRef, options, emit) {
     const scroll = ref(null)
 
     onMounted(() => {
         //此时计算容器高度和内容高度
         // debugger
-        scroll.value = new BScroll(wrapperRef.value, {
+        const scrollVal = scroll.value = new BScroll(wrapperRef.value, {
             observeDOM: true,
             ...options
         })
+
+        //实时派发滚动位置
+        if (options.probeType > 0) {
+            scrollVal.on('scroll', pos => {
+                // console.log(pos.y);
+                emit('scroll', pos)
+            })
+        }
     })
 
     onUnmounted(() => {

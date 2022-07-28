@@ -1,5 +1,6 @@
+//工具函数
 export function shuffle(source) {
-  const arr = source.slice()
+  const arr = source.slice()//不会修改原数组
   for (let i = 0; i < arr.length; i++) {
     const j = getRandomInt(i)
     swap(arr, i, j)
@@ -16,10 +17,10 @@ function swap(arr, i, j) {
   arr[i] = arr[j]
   arr[j] = t
 }
-
-export function formatTime(interval) {
-  interval = interval | 0
+//给progress-bar设置时间格式
+export function timeFormat(interval) {
+  interval = interval | 0 //向下取整
   const minute = ((interval / 60 | 0) + '').padStart(2, '0')
-  const second = (interval % 60 + '').padStart(2, '0')
+  const second = ((interval % 60) + '').padStart(2, '0')
   return `${minute}:${second}`
 }

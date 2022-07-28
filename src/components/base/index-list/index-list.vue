@@ -4,7 +4,12 @@
       <li v-for="group in data" :key="group.title" class="group">
         <h2 class="title">{{ group.title }}</h2>
         <ul>
-          <li v-for="item in group.list" :key="item.id" class="item">
+          <li
+            v-for="item in group.list"
+            :key="item.id"
+            class="item"
+            @click="onItemClick(item)"
+          >
             <img :src="item.pic" class="avatar" />
             <span class="name">{{ item.name }}</span>
           </li>
@@ -54,9 +59,20 @@ export default {
       },
     },
   },
-  setup(props) {
+  emits: ["select"],
+  setup(props, { emit }) {
     const { fixedTitle, onScroll, groupRef, currentIndex } = useFixed(props);
-    const { shortcutList ,onShortcutTouchStart,scrollRef,onShortcutTouchMove} = useShortcut(props,groupRef);
+    const {
+      shortcutList,
+      onShortcutTouchStart,
+      scrollRef,
+      onShortcutTouchMove,
+    } = useShortcut(props, groupRef);
+
+    function onItemClick(item) {
+      emit("select", item);
+    }
+
     return {
       //use-fixed
       fixedTitle,
@@ -67,7 +83,9 @@ export default {
       shortcutList,
       onShortcutTouchStart,
       scrollRef,
-      onShortcutTouchMove
+      onShortcutTouchMove,
+      //传递singer.id
+      onItemClick,
     };
   },
 };

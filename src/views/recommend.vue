@@ -42,7 +42,7 @@ export default {
     return {
       sliders: [],
       albums: [],
-      loadingText:'^___^正在载入'
+      loadingText: "^___^正在载入"
     };
   },
   computed: {
